@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { docker { image '3.8.3-ibmjava-8' } }
   stages {
     stage('Build') {
       steps {
