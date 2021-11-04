@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    BUILD_USER = ''
+  }
   stages {
     stage('Build') {
       steps {
@@ -16,7 +19,8 @@ pipeline {
         sh 'mvn package'
       }
     }
-    post {
+  }
+  post {
         always {
             script {
                 BUILD_USER = getBuildUser()
@@ -27,5 +31,4 @@ pipeline {
                 message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL}"
         }
     }
-  }
 }
