@@ -8,7 +8,7 @@
   <name>SpringExample</name>
   <url>http://maven.apache.org</url>
 
-  <build>
+  <!-- <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -19,7 +19,12 @@
         </configuration>
       </plugin>
     <plugins>
-  </build>
+  </build> -->
+
+  <properties>
+    <maven.compiler.source>6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+  </properties>
   
   <dependencies>
     <dependency>
