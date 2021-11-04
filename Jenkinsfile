@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {
-    BUILD_USER = ''
-  }
   stages {
     stage('Build') {
       steps {
@@ -22,13 +19,10 @@ pipeline {
   }
   post {
         always {
-            script {
-                BUILD_USER = getBuildUser()
-            }
             echo "hello from postbuild logs"
             slackSend channel: '#test',
                 color: COLOR_MAP[currentBuild.currentResult],
-                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL}"
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${env.BUILD_USER}\n More info at: ${env.BUILD_URL}"
         }
     }
 }
